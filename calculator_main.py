@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=XhCfsuMyhXo
 # https://www.youtube.com/watch?v=oq3lJdhnPp8
 
+# region Imports
 import tkinter as tk
 import keyboard
 from math import *
@@ -9,11 +10,10 @@ from math import *
 import os
 os.system('cls')
 
-win = tk.Tk()
-win.title('Simple Calculator')
-win.option_add("*Entry*font", 'courier 36 bold')
-win.option_add("*Button*font", 'courier 48 bold')
-win.option_add("*Button*background", 'gray90')
+# endregion Imports
+
+
+# region functions
 
 
 def btn_click_number(num):
@@ -38,14 +38,22 @@ def btn_eval(event):
         current = txt_display.get()
         txt_display.delete(0, tk.END)
         txt_display.insert(0, str(eval(current)))
+# endregion functions
 
 
+# region root Tkinter window
+win = tk.Tk()
+win.geometry('+200+10')
+win.title('Simple Calculator')
+win.option_add("*Entry*font", 'courier 36 bold')
+win.option_add("*Button*font", 'courier 48 bold')
+win.option_add("*Button*background", 'gray90')
+
+# endregion root Tkinter window
+
+
+# region GUI Define widgets
 txt_display = tk.Entry(win,  borderwidth=5, justify="right")
-txt_display.grid(row=0, column=0, columnspan=3,
-                 padx=10, pady=(10, 20), sticky=tk.EW)
-txt_display.bind('<Return>', btn_eval)
-# txt_display.bind('<Double-Button-3>', btn_eval)
-txt_display.focus_set()
 
 btn_1 = tk.Button(win, text="1", width=5, pady=20,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(1))
@@ -71,7 +79,10 @@ btn_oper = tk.Button(win, text="+", width=5, pady=20,
                      justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('+'))
 btn_equal = tk.Button(win, text="=", width=5, pady=20,
                       justify="center", relief=tk.GROOVE, command=btn_click_equal)
+# endregion GUI Define widgets
 
+
+# region GUI Grid
 btn_1.grid(row=3, column=0, padx=(10, 0), pady=(0, 10))
 btn_2.grid(row=3, column=1, padx=(10, 0), pady=(0, 10))
 btn_3.grid(row=3, column=2, padx=(10, 10), pady=(0, 10))
@@ -88,5 +99,20 @@ btn_0.grid(row=4, column=0, padx=(10, 10), pady=(0, 10))
 btn_oper.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
 btn_equal.grid(row=4, column=2, padx=(10, 10), pady=(0, 10))
 
+txt_display.grid(row=0, column=0, columnspan=3,
+                 padx=10, pady=(10, 20), sticky=tk.EW)
+# endregion Grid
+
+
+# region GUI Events
+txt_display.bind('<Return>', btn_eval)
+
+# endregion Evenst
+
+
+# region GUI misc
+txt_display.focus_set()
+
+# endregion GUI misc
 
 win.mainloop()
