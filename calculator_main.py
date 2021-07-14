@@ -33,17 +33,21 @@ def btn_click_equal():
 
 
 def btn_eval(event):
-    if keyboard.is_pressed('ctrl') or event == None:
-        # if keyboard.is_pressed('ctrl+shift+alt'):
-        current = txt_display.get()
-        txt_display.delete(0, tk.END)
-        txt_display.insert(0, str(eval(current)))
+    # if keyboard.is_pressed('ctrl') or event == None:
+    #     # if keyboard.is_pressed('ctrl+shift+alt'):
+    current = txt_display.get()
+    txt_display.delete(0, tk.END)
+    txt_display.insert(0, str(eval(current)))
+
+
+def btn_clear(event):
+    txt_display.delete(0, tk.END)
 # endregion functions
 
 
 # region root Tkinter window
 win = tk.Tk()
-win.geometry('+200+10')
+win.geometry('+200+15')
 win.title('Simple Calculator')
 win.option_add("*Entry*font", 'courier 36 bold')
 win.option_add("*Button*font", 'courier 48 bold')
@@ -75,8 +79,15 @@ btn_9 = tk.Button(win, text="9", width=5, pady=20,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(9))
 btn_0 = tk.Button(win, text="0", width=5, pady=20,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(0))
-btn_oper = tk.Button(win, text="+", width=5, pady=20,
-                     justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('+'))
+btn_oper_plus = tk.Button(win, text="+", width=5, pady=20,
+                          justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('+'))
+btn_oper_minus = tk.Button(win, text="-", width=5, pady=20,
+                           justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('-'))
+btn_oper_multiply = tk.Button(win, text="*", width=5, pady=20,
+                              justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('*'))
+btn_oper_divide = tk.Button(win, text="/", width=5, pady=20,
+                            justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('/'))
+
 btn_equal = tk.Button(win, text="=", width=5, pady=20,
                       justify="center", relief=tk.GROOVE, command=btn_click_equal)
 # endregion GUI Define widgets
@@ -96,8 +107,12 @@ btn_8.grid(row=1, column=1, padx=(10, 0), pady=(0, 10))
 btn_9.grid(row=1, column=2, padx=(10, 10), pady=(0, 10))
 
 btn_0.grid(row=4, column=0, padx=(10, 10), pady=(0, 10))
-btn_oper.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
+btn_oper_plus.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
 btn_equal.grid(row=4, column=2, padx=(10, 10), pady=(0, 10))
+
+btn_oper_minus.grid(row=5, column=0, padx=(10, 10), pady=(0, 10))
+btn_oper_multiply.grid(row=5, column=1, padx=(10, 10), pady=(0, 10))
+btn_oper_divide.grid(row=5, column=2, padx=(10, 10), pady=(0, 10))
 
 txt_display.grid(row=0, column=0, columnspan=3,
                  padx=10, pady=(10, 20), sticky=tk.EW)
@@ -106,6 +121,7 @@ txt_display.grid(row=0, column=0, columnspan=3,
 
 # region GUI Events
 txt_display.bind('<Return>', btn_eval)
+
 
 # endregion Evenst
 
