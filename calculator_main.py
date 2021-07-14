@@ -17,22 +17,23 @@ win.option_add("*Button*background", 'gray90')
 
 
 def btn_click_number(num):
-    if str(num) != '+' and str(num) != '=':
-        current = txt_display.get()
-        txt_display.delete(0, tk.END)
-        txt_display.insert(0, str(current)+str(num))
-    if str(num) == "=":
-        current = txt_display.get()
-        txt_display.delete(0, tk.END)
-        txt_display.insert(0, str(eval(current)))
-    if str(num) == "+":
-        current = txt_display.get()
-        txt_display.delete(0, tk.END)
-        txt_display.insert(0, str(current)+str(num))
+    current = txt_display.get()
+    txt_display.delete(0, tk.END)
+    txt_display.insert(0, str(current)+str(num))
+
+
+def btn_click_oper(oper):
+    current = txt_display.get()
+    txt_display.delete(0, tk.END)
+    txt_display.insert(0, str(current)+str(oper))
+
+
+def btn_click_equal():
+    btn_eval(None)
 
 
 def btn_eval(event):
-    if keyboard.is_pressed('ctrl'):
+    if keyboard.is_pressed('ctrl') or event == None:
         # if keyboard.is_pressed('ctrl+shift+alt'):
         current = txt_display.get()
         txt_display.delete(0, tk.END)
@@ -66,10 +67,10 @@ btn_9 = tk.Button(win, text="9", width=5, pady=20,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(9))
 btn_0 = tk.Button(win, text="0", width=5, pady=20,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(0))
-btn_p = tk.Button(win, text="+", width=5, pady=20,
-                  justify="center", relief=tk.GROOVE, command=lambda: btn_click_number('+'))
-btn_e = tk.Button(win, text="=", width=5, pady=20,
-                  justify="center", relief=tk.GROOVE, command=lambda: btn_click_number('='))
+btn_oper = tk.Button(win, text="+", width=5, pady=20,
+                     justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('+'))
+btn_equal = tk.Button(win, text="=", width=5, pady=20,
+                      justify="center", relief=tk.GROOVE, command=btn_click_equal)
 
 btn_1.grid(row=3, column=0, padx=(10, 0), pady=(0, 10))
 btn_2.grid(row=3, column=1, padx=(10, 0), pady=(0, 10))
@@ -84,8 +85,8 @@ btn_8.grid(row=1, column=1, padx=(10, 0), pady=(0, 10))
 btn_9.grid(row=1, column=2, padx=(10, 10), pady=(0, 10))
 
 btn_0.grid(row=4, column=0, padx=(10, 10), pady=(0, 10))
-btn_p.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
-btn_e.grid(row=4, column=2, padx=(10, 10), pady=(0, 10))
+btn_oper.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
+btn_equal.grid(row=4, column=2, padx=(10, 10), pady=(0, 10))
 
 
 win.mainloop()
