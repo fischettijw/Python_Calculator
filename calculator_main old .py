@@ -1,14 +1,9 @@
-# region Links
-
 # https://www.youtube.com/watch?v=F5PfbC5ld-Q
 # https://www.youtube.com/watch?v=XhCfsuMyhXo
 # https://www.youtube.com/watch?v=oq3lJdhnPp8
 
-# endregion Links
-
 # region Imports
 import tkinter as tk
-import time
 import keyboard
 from math import *
 # from calculator_import import *
@@ -17,20 +12,15 @@ os.system('cls')
 
 # endregion Imports
 
-# region Constants
+# region variables
 undo = []
-clear_display = True
 
-# endregion Constants
+# endregion variables
 
 # region functions
 
 
 def btn_click_number(num):
-    global clear_display
-    if clear_display:
-        txt_display.delete(0, tk.END)
-        clear_display = False
     current = txt_display.get()
     txt_display.delete(0, tk.END)
     txt_display.insert(0, str(current)+str(num))
@@ -43,39 +33,24 @@ def btn_click_oper(oper):
 
 
 def btn_click_equal():
+    undo.append(txt_display.get())
     btn_eval(None)
 
 
 def btn_eval(event):
-    global clear_display
-    undo.append(txt_display.get())
+    # if keyboard.is_pressed('ctrl') or event == None:
+    #     # if keyboard.is_pressed('ctrl+shift+alt'):
     current = txt_display.get()
     txt_display.delete(0, tk.END)
-    try:
-        txt_display.insert(0, str(eval(current)))
-    except ZeroDivisionError as e:
-        txt_display.insert(0, 'Divide By Zero')
-        win.after(1000, btn_click_clear)
-    except:
-        txt_display.insert(0, 'Invalid Syntax')
-        win.after(1000, btn_click_clear)
-    clear_display = True
+    txt_display.insert(0, str(eval(current)))
 
 
 def btn_click_clear():
     txt_display.delete(0, tk.END)
 
 
-def undo_expression(event):
-    txt_display.delete(0, tk.END)
-    if len(undo) > 0:
-        txt_display.insert(0, str(undo.pop()))
-    else:
-        txt_display.insert(0, 'No Previous Expression')
-        win.after(1000, btn_click_clear)
-
-
 # endregion functions
+
 # region root Tkinter window
 win = tk.Tk()
 win.geometry('+200+15')
@@ -152,7 +127,7 @@ txt_display.grid(row=0, column=0, columnspan=4,
 
 # region GUI Events
 txt_display.bind('<Return>', btn_eval)
-win.bind('<Control-KeyPress-z>', undo_expression)
+
 
 # endregion Evenst
 
