@@ -4,6 +4,13 @@
 # https://www.youtube.com/watch?v=XhCfsuMyhXo
 # https://www.youtube.com/watch?v=oq3lJdhnPp8
 
+'''
+Use tkinter and Python in the browser with Repl.it
+https://replit.com/
+
+https://www.youtube.com/watch?v=2BeyOrUKRD4
+'''
+
 # endregion Links
 
 # region Imports
@@ -20,6 +27,11 @@ os.system('cls')
 # region Constants
 undo = []
 clear_display = True
+padx0505 = (5, 5)
+padx0500 = (5, 0)
+pady15 = 15
+pady0005 = (0, 5)
+pady0510 = (5, 10)
 
 # endregion Constants
 
@@ -81,10 +93,10 @@ def undo_expression(event):
 # endregion functions
 # region root Tkinter window
 win = tk.Tk()
-win.geometry('+200+15')
-win.title('Simple Calculator')
-win.option_add("*Entry*font", 'courier 36 bold')
-win.option_add("*Button*font", 'courier 48 bold')
+win.geometry('+15+15')
+win.title('Simple Calculator by Abigail Lightle')
+win.option_add("*Entry*font", 'courier 16 bold')
+win.option_add("*Button*font", 'courier 18 bold')
 win.option_add("*Button*background", 'gray90')
 
 # endregion root Tkinter window
@@ -92,65 +104,65 @@ win.option_add("*Button*background", 'gray90')
 # region GUI Define widgets
 txt_display = tk.Entry(win,  borderwidth=5, justify="right")
 
-btn_1 = tk.Button(win, text="1", width=5, pady=20,
+btn_1 = tk.Button(win, text="1", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(1))
-btn_2 = tk.Button(win, text="2", width=5, pady=20,
+btn_2 = tk.Button(win, text="2", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(2))
-btn_3 = tk.Button(win, text="3", width=5, pady=20,
+btn_3 = tk.Button(win, text="3", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(3))
-btn_4 = tk.Button(win, text="4", width=5, pady=20,
+btn_4 = tk.Button(win, text="4", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(4))
-btn_5 = tk.Button(win, text="5", width=5, pady=20,
+btn_5 = tk.Button(win, text="5", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(5))
-btn_6 = tk.Button(win, text="6", width=5, pady=20,
+btn_6 = tk.Button(win, text="6", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(6))
-btn_7 = tk.Button(win, text="7", width=5, pady=20,
+btn_7 = tk.Button(win, text="7", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(7))
-btn_8 = tk.Button(win, text="8", width=5, pady=20,
+btn_8 = tk.Button(win, text="8", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(8))
-btn_9 = tk.Button(win, text="9", width=5, pady=20,
+btn_9 = tk.Button(win, text="9", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(9))
-btn_0 = tk.Button(win, text="0", width=5, pady=20,
+btn_0 = tk.Button(win, text="0", width=5, pady=pady15,
                   justify="center", relief=tk.GROOVE, command=lambda: btn_click_number(0))
-btn_oper_plus = tk.Button(win, text="+", width=5, pady=20,
+btn_oper_plus = tk.Button(win, text="+", width=5, pady=pady15,
                           justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('+'))
-btn_oper_minus = tk.Button(win, text="-", width=5, pady=20,
+btn_oper_minus = tk.Button(win, text="-", width=5, pady=pady15,
                            justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('-'))
-btn_oper_multiply = tk.Button(win, text="*", width=5, pady=20,
+btn_oper_multiply = tk.Button(win, text="*", width=5, pady=pady15,
                               justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('*'))
-btn_oper_divide = tk.Button(win, text="/", width=5, pady=20,
+btn_oper_divide = tk.Button(win, text="/", width=5, pady=pady15,
                             justify="center", relief=tk.GROOVE, command=lambda: btn_click_oper('/'))
-btn_clear = tk.Button(win, text="clr", width=5, pady=20,
+btn_clear = tk.Button(win, text="clr", width=5, pady=pady15,
                       justify="center", relief=tk.GROOVE, command=btn_click_clear)
 
-btn_equal = tk.Button(win, text="=", width=5, pady=20,
+btn_equal = tk.Button(win, text="=", width=5, pady=pady15,
                       justify="center", relief=tk.GROOVE, command=btn_click_equal)
 # endregion GUI Define widgets
 
 # region GUI Grid
-btn_1.grid(row=3, column=0, padx=(10, 0), pady=(0, 10))
-btn_2.grid(row=3, column=1, padx=(10, 0), pady=(0, 10))
-btn_3.grid(row=3, column=2, padx=(10, 10), pady=(0, 10))
-btn_oper_multiply.grid(row=3, column=3, padx=(10, 10), pady=(0, 10))
+btn_1.grid(row=3, column=0, padx=padx0500, pady=pady0005)
+btn_2.grid(row=3, column=1, padx=padx0500, pady=pady0005)
+btn_3.grid(row=3, column=2, padx=padx0505, pady=pady0005)
+btn_oper_multiply.grid(row=3, column=3, padx=padx0505, pady=pady0005)
 
-btn_4.grid(row=2, column=0, padx=(10, 0), pady=(0, 10))
-btn_5.grid(row=2, column=1, padx=(10, 0), pady=(0, 10))
-btn_6.grid(row=2, column=2, padx=(10, 10), pady=(0, 10))
-btn_oper_minus.grid(row=2, column=3, padx=(10, 10), pady=(0, 10))
+btn_4.grid(row=2, column=0, padx=padx0500, pady=pady0005)
+btn_5.grid(row=2, column=1, padx=padx0500, pady=pady0005)
+btn_6.grid(row=2, column=2, padx=padx0505, pady=pady0005)
+btn_oper_minus.grid(row=2, column=3, padx=padx0505, pady=pady0005)
 
-btn_7.grid(row=1, column=0, padx=(10, 0), pady=(0, 10))
-btn_8.grid(row=1, column=1, padx=(10, 0), pady=(0, 10))
-btn_9.grid(row=1, column=2, padx=(10, 10), pady=(0, 10))
-btn_oper_plus.grid(row=1, column=3, padx=(10, 10), pady=(0, 10))
+btn_7.grid(row=1, column=0, padx=padx0500, pady=pady0005)
+btn_8.grid(row=1, column=1, padx=padx0500, pady=pady0005)
+btn_9.grid(row=1, column=2, padx=padx0505, pady=pady0005)
+btn_oper_plus.grid(row=1, column=3, padx=padx0505, pady=pady0005)
 
-btn_0.grid(row=4, column=0, padx=(10, 10), pady=(0, 10))
-btn_equal.grid(row=4, column=2, padx=(10, 10), pady=(0, 10))
+btn_0.grid(row=4, column=0, padx=padx0505, pady=pady0005)
+btn_equal.grid(row=4, column=2, padx=padx0505, pady=pady0005)
 
-btn_oper_divide.grid(row=4, column=3, padx=(10, 10), pady=(0, 10))
-btn_clear.grid(row=4, column=1, padx=(10, 10), pady=(0, 10))
+btn_oper_divide.grid(row=4, column=3, padx=padx0505, pady=pady0005)
+btn_clear.grid(row=4, column=1, padx=padx0505, pady=pady0005)
 
 txt_display.grid(row=0, column=0, columnspan=4,
-                 padx=10, pady=(10, 20), sticky=tk.EW)
+                 padx=padx0500, pady=pady0510, sticky=tk.EW)
 # endregion Grid
 
 # region GUI Events
